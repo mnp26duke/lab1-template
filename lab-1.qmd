@@ -66,6 +66,28 @@ I prefer this plot rather than the one from Exercise 2 because I'm more clearly 
 
 ## Exercise 5
 
+```{r}
+#l label: boxplot of area
+
+ggplot(midwest, aes(x = area, y = state)) +
+  geom_boxplot() +
+  labs(x = "Area of Counties", y = "State", title = "Areas of Counties in Different States")
+```
+
+It appears that Wisconsin has the largest median county size, followed by Michigan, then Illinois, then Ohio, and finally Indiana. Each dataset has at least one datapoint that does not fall within the first and third quartiles. Wisconsin appears to have the largest spread (variability) in county size, while Indiana appears to have the smallest spread. Michigan and Illinois appear to be slightly right-skewed in the area of their counties. Michigan appears to have an outlier, with a very large county.
+
+Michigan appears to have the single largest county from the states in this dataset. This is because Michigan has a datapoint that is the furthest up on the x-axis--that is, there is a county in Michigan that has a higher area than any of the other counties in the other states. This single datapoint (and potential outlier) implies that Michigan has the largest county out of the 5 Midwestern states in this dataset.
+
 ## Exercise 6
+
+```{r}
+#l label: metro plot
+
+midwest <- midwest |>
+  mutate(metro = if_else(inmetro == 1, "Yes", "No"))
+
+ggplot(midwest, aes(x = state, fill = metro))
+  geom_bar()
+```
 
 ## Exercise 7
