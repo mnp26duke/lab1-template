@@ -96,10 +96,9 @@ ggplot(midwest, aes(x = state, fill = metro)) +
 ```{r}
 #l label: problem solving
 
-ggplot(midwest, aes(x = percollege, y = popdensity)) +
-  geom_hex(alpha = 0.5, size = 2) +
-  scale_color_viridis_d() +
-  labs(x = "Percentage of People Below Poverty", y = "Percentage of People With a College Degree", title = "Relationship between Poverty Level and College Degree by State in the Midwest") +
+ggplot(midwest, aes(x = percollege, y = popdensity, color = percbelowpoverty)) +
+  geom_point(alpha = 0.5, size = 2) +
+  labs(x = "% college educated", y = "Population density (person / unit area)", title = "Do people with college degrees tend to live in denser areas?", color = "% below poverty line") +
   facet_wrap(~ state) +
   theme_minimal()
 ```
