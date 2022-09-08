@@ -11,28 +11,61 @@ editor: visual
 #| label: load-packages
 #| message: false
 
+install.packages("tidyverse")
 library(tidyverse)
+library(viridis)
 ```
 
 ## Exercise 1
 
-(Type your answer to Exercise 1 here. Add code chunks as needed. Don't forget to label your code chunk. Do not use spaces in code chunk labels.)
+```{r}
+#l label: histogram of population density
+
+glimpse(midwest)
+
+ggplot(data = midwest, mapping = aes(x = popdensity)) +
+  geom_histogram(binwidth = 10000) +
+  labs(x = "Population Density", y = "Frequency", title = "Histogram of Population Density") +
+  scale_color_viridis_d()
+
+```
+
+The distribution appears to be unimodal and strongly right-skewed.
+
+There appears to be an outlier with a population density between 75000 and 100000. The data value(s) between 50000 and 75000 population density could also potentially be outliers.
 
 ## Exercise 2
 
-(Type your answer to Exercise 2 here. Add code chunks as needed. Don't forget to label your code chunk. Do not use spaces in code chunk labels.)
+```{r}
+#l label: scatterplot
+
+ggplot(midwest, aes(x = percbelowpoverty, y = percollege, color = state)) +
+  geom_point() +
+  scale_color_viridis_d() +
+  labs(x = "Percentage of People Below Poverty", y = "Percentage of People With a College Degree", title = "Relationship between Poverty Level and College Degree by State in the Midwest")
+```
 
 ## Exercise 3
 
-(Type your answer to Exercise 3 here. Add code chunks as needed. Don't forget to label your code chunk. Do not use spaces in code chunk labels.)
+It appears that for most states in this dataset, there is a general weak negative correlation between the percentage of people below poverty and the percentage of people with a college degree. This means that in general, as the percentage of people below poverty increases, the percentage of people with college degrees increases. This correlation appears to be stronger in Wisconsin and Ohio and weaker in the other Midwestern states in this dataset. There is a strong outlier in Wisconsin, at which there are approximately 48% of people below poverty and around 5% of people with a college degree. In Illinois, there appears to be very little relationship between the percentage of people with a college degree and the percentage of people below the poverty line, whereas in Wisconsin, there appears to be a stronger relationship between the 2 variables.
 
 ## Exercise 4
 
+```{r}
+#l label: scatterplot by state
+
+ggplot(midwest, aes(x = percbelowpoverty, y = percollege, color = state)) +
+  geom_point() +
+  geom_smooth(se = FALSE) +
+  scale_color_viridis_d() +
+  labs(x = "Percentage of People Below Poverty", y = "Percentage of People With a College Degree", title = "Relationship between Poverty Level and College Degree by State in the Midwest") +
+  facet_wrap(~ state, nrow = 5)
+```
+
+I prefer this plot rather than the one from Exercise 2 because I'm more clearly able to see the overall trend and relationship between the percentage of people below poverty and the percentage of people with a college degree for each individual state. The line provides a better idea of the overall trend in the percentage of people with college degrees as the percentage of people below poverty increases. This plot also separates each scatterplot by state, which is helpful because sometimes, the datapoints for each state were covered up by other datapoints from different states in the plot from Exercise 2, which made it more difficult to visualize the trend for each state, since many datapoints appeared to be "missing."
 
 ## Exercise 5
 
-
 ## Exercise 6
-
 
 ## Exercise 7
