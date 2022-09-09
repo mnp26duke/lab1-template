@@ -25,8 +25,7 @@ glimpse(midwest)
 
 ggplot(data = midwest, mapping = aes(x = popdensity)) +
   geom_histogram(binwidth = 10000) +
-  labs(x = "Population Density", y = "Frequency", title = "Histogram of Population Density") +
-  scale_color_viridis_d()
+  labs(x = "Population Density", y = "Frequency", title = "Histogram of Population Density")
 
 ```
 
